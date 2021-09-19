@@ -12,7 +12,6 @@ import lombok.NoArgsConstructor;
 
 public class ExchangeRateRequest implements Request{
 
-    private String id;
     private String sourceCurrency;
     private String targetCurrency;
     private String value;

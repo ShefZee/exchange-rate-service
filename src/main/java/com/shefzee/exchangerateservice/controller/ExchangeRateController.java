@@ -28,4 +28,10 @@ public class ExchangeRateController {
     public ResponseEntity<List<ExchangeRateResponse>> getAll( )  {
         return ResponseEntity.ok(exchangeRateService.findAll());
     }
+
+    @PostMapping("/converter")
+    public ResponseEntity<ExchangeRateResponse> getExchangeRate(@RequestBody ExchangeRateRequest request )  {
+        return ResponseEntity.ok(exchangeRateService.findBySourceAndTarget(request.getSourceCurrency(),request.getTargetCurrency()));
+    }
+
 }
