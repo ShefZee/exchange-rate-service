@@ -26,4 +26,4 @@ ARG DEPENDENCY=/fullstack/backend/target/dependency
 COPY --from=backend-build ${DEPENDENCY}/BOOT-INF/lib /app/lib
 COPY --from=backend-build ${DEPENDENCY}/META-INF /app/META-INF
 COPY --from=backend-build ${DEPENDENCY}/BOOT-INF/classes /app
-ENTRYPOINT ["java","-cp","app:app/lib/*","com.shefzee.carmasterservice.Application"]
+ENTRYPOINT ["java","-cp","app:app/lib/*","com.shefzee.exchangerate.Application"]

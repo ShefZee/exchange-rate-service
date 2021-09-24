@@ -4,23 +4,14 @@ spring:
   application:
     name: exchange-rate-service
   datasource:
-    url: jdbc:h2:mem:testdb
-  #  url: jdbc:mysql://${HOST_NAME:localhost}:${DB_PORT:3306}/${DB_NAME:exchange_rate}
-  #  driver-class-name: com.mysql.cj.jdbc.Driver
-    driver-class-name: org.h2.Driver
-  #  username: ${DB_USER_NAME:shefzee}
-    username: sa
-  #  password: ${DB_PASSWORD:shef123}
-    password:
+     url: ${SPRING_DATA_URL:jdbc:mysql://localhost:3306/database?autoReconnect=true&useSSL=false}
+     driver-class-name: com.mysql.cj.jdbc.Driver
+     username: ${DB_USER_NAME:shefzee}
+     password: ${DB_PASSWORD:shef123}
   jpa:
-    #database-platform: org.hibernate.dialect.MySQL57Dialect
-    database-platform: org.hibernate.dialect.H2Dialect
+    database-platform: org.hibernate.dialect.MySQL57Dialect
     hibernate:
       ddl-auto: update
-  h2:
-    console:
-      enabled: true
-      path: /h2
 
 
 
