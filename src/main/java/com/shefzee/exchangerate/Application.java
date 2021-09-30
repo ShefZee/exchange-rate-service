@@ -13,6 +13,7 @@ import org.springframework.boot.context.event.ApplicationStartingEvent;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.event.EventListener;
 import org.springframework.context.support.ResourceBundleMessageSource;
+import org.springframework.scheduling.annotation.EnableScheduling;
 
 import java.util.Date;
 import java.util.Objects;
@@ -20,7 +21,7 @@ import java.util.Objects;
 @SpringBootApplication
 @Slf4j
 @RootConfiguration
-//@EnableEurekaClient
+@EnableScheduling
 public class Application implements CommandLineRunner {
 
     @Autowired

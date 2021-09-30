@@ -12,7 +12,8 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
                 "com.shefzee.exchangerate.helper",
                 "com.shefzee.exchangerate.service",
                 "com.shefzee.exchangerate.service.impl",
-                "com.shefzee.exchangerate.validators"
+                "com.shefzee.exchangerate.validators",
+                "com.shefzee.exchangerate.job"
         }
 )
 @EnableJpaRepositories(basePackages = {"com.shefzee.exchangerate.repository"})
