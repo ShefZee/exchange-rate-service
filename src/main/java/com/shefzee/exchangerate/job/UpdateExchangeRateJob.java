@@ -5,6 +5,7 @@ import com.shefzee.exchangerate.repository.ExchangeRateRepository;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnExpression;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
@@ -13,6 +14,7 @@ import java.util.List;
 import java.util.Random;
 
 @Component
+@ConditionalOnExpression("${cron.enabled:true}")
 @Data
 public class UpdateExchangeRateJob {
 
