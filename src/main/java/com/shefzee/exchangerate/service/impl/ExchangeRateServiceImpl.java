@@ -3,6 +3,7 @@ package com.shefzee.exchangerate.service.impl;
 import com.shefzee.exchangerate.entity.ExchangeRate;
 import com.shefzee.exchangerate.repository.ExchangeRateRepository;
 import com.shefzee.exchangerate.request.ExchangeRateRequest;
+import com.shefzee.exchangerate.response.CurrencyType;
 import com.shefzee.exchangerate.response.ExchangeRateResponse;
 import com.shefzee.exchangerate.service.ExchangeRateService;
 import com.shefzee.exchangerate.validators.ExchangeRateBusinessRules;
@@ -10,6 +11,7 @@ import lombok.AllArgsConstructor;
 import org.apache.commons.collections4.ListUtils;
 import org.springframework.stereotype.Service;
 
+import javax.xml.transform.Source;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -50,6 +52,17 @@ public class ExchangeRateServiceImpl implements ExchangeRateService {
         return Optional.ofNullable(exchangeRateRepository.findBySourceCurrencyAndTargetCurrency(sourceCurrency,targetCurrency))
                 .map(this::convertTo)
                 .orElse(null);
+    }
+
+    @Override
+    public CurrencyType getCurrencyTypes() {
+        List<ExchangeRate> exchangeRates = exchangeRateRepository.findAll();
+        List<String> source = exchangeRates.stream().map(a ->a.getSourceCurrency()).distinct().collect(Collectors.toList());
+        List<String> target = exchangeRates.stream().map(a->a.getTargetCurrency()).distinct().collect(Collectors.toList());
+        return CurrencyType.builder()
+                .source(source)
+                .target(target)
+                .build();
     }
 
     private ExchangeRate convertTo(ExchangeRateRequest exchangeRateRequest){

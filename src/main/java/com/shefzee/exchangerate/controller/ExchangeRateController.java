@@ -2,6 +2,7 @@ package com.shefzee.exchangerate.controller;
 
 import com.shefzee.exchangerate.constants.ApiConstants;
 import com.shefzee.exchangerate.request.ExchangeRateRequest;
+import com.shefzee.exchangerate.response.CurrencyType;
 import com.shefzee.exchangerate.response.ExchangeRateResponse;
 import com.shefzee.exchangerate.service.ExchangeRateService;
 import com.shefzee.exchangerate.test.MyEventPublisher;
@@ -20,10 +21,10 @@ public class ExchangeRateController {
     private ExchangeRateService exchangeRateService;
     private MyEventPublisher myEventPublisher;
 
-    @PostMapping("/save")
+    /*@PostMapping("/save")
     public ResponseEntity<ExchangeRateResponse> create(@RequestBody ExchangeRateRequest request){
         return ResponseEntity.ok(exchangeRateService.save(request));
-    }
+    }*/
 
 
     @GetMapping("/all")
@@ -36,10 +37,15 @@ public class ExchangeRateController {
         return ResponseEntity.ok(exchangeRateService.findBySourceAndTarget(request.getSourceCurrency(),request.getTargetCurrency()));
     }
 
-    @PostMapping("/test")
+    @GetMapping("/currency-types")
+    public ResponseEntity<CurrencyType> getCurrencyTypes(){
+        return ResponseEntity.ok(exchangeRateService.getCurrencyTypes());
+    }
+
+   /* @PostMapping("/test")
     public ResponseEntity publish(){
         myEventPublisher.publish();
         return null;
-    }
+    }*/
 
 }
