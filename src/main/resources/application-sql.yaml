@@ -14,5 +14,6 @@ spring:
       ddl-auto: update
 
 cron:
-  enabled: ${CRON_ENABLED:true}
   time: ${CRON_EXPRESSION:0/5 * * ? * *}
+log:
+  enabled: ${LOG_ENABLED:true}

@@ -14,14 +14,14 @@ import java.util.List;
 import java.util.Random;
 
 @Component
-@ConditionalOnExpression("${cron.enabled:true}")
 @Data
 public class UpdateExchangeRateJob {
 
     @Autowired
     private ExchangeRateRepository exchangeRateRepository;
 
-
+    @Value("${log.enabled}")
+    private boolean logEnabled;
     @Scheduled(cron = "${cron.time}")
     public void updateRates(){
         List<ExchangeRate> rates =  exchangeRateRepository.findAll();
@@ -38,7 +38,9 @@ public class UpdateExchangeRateJob {
             }
             a.setValue(rate);
             a =  exchangeRateRepository.save(a);
-            System.out.println(new Date() + " : " + a.getSourceCurrency() + " - " + a.getTargetCurrency() + " = " + a.getValue() );
+            if (logEnabled) {
+                System.out.println(new Date() + " : " + a.getSourceCurrency() + " - " + a.getTargetCurrency() + " = " + a.getValue() );
+            }
         }
        /* exchangeRateRepository.findAll()
                 .forEach(a -> {
